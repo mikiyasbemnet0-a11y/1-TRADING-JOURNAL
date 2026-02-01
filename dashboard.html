@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FX MIKO Trading Dashboard</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #0a0e17 0%, #121826 100%);
+            color: #e0e0e0;
+            min-height: 100vh;
+        }
+        
+        .dashboard-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .dashboard-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            margin-bottom: 30px;
+        }
+        
+        .logo h1 {
+            font-size: 1.8rem;
+            background: linear-gradient(90deg, #29c4ff, #ff6b6b);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .user-info {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .logout-btn {
+            padding: 8px 20px;
+            background: #ff6b6b;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .logout-btn:hover {
+            background: #ff5252;
+            transform: translateY(-2px);
+        }
+        
+        .dashboard-content {
+            text-align: center;
+            padding: 60px 20px;
+        }
+        
+        .dashboard-content h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            color: #29c4ff;
+        }
+        
+        .dashboard-content p {
+            font-size: 1.1rem;
+            color: #b0b0b0;
+            max-width: 600px;
+            margin: 0 auto 30px;
+            line-height: 1.6;
+        }
+        
+        .coming-soon {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 30px;
+            border-radius: 15px;
+            border: 1px solid rgba(41, 196, 255, 0.2);
+            margin-top: 40px;
+        }
+    </style>
+</head>
+<body>
+    <div class="dashboard-container">
+        <header class="dashboard-header">
+            <div class="logo">
+                <h1>FX MIKO TRADING DASHBOARD</h1>
+            </div>
+            <div class="user-info">
+                <span id="userEmail"></span>
+                <button class="logout-btn" onclick="logout()">
+                    <i class="fas fa-sign-out-alt"></i> Logout
+                </button>
+            </div>
+        </header>
+        
+        <main class="dashboard-content">
+            <h2>Welcome to Your Trading Dashboard!</h2>
+            <p>Your account has been successfully created. The full trading journal features will be available soon.</p>
+            
+            <div class="coming-soon">
+                <h3><i class="fas fa-tools"></i> Dashboard Features Coming Soon</h3>
+                <p>Trade Journal • Performance Analytics • Community Feed • Personal Coaching</p>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        // Get current user from localStorage
+        const currentUser = JSON.parse(localStorage.getItem('fxMikoCurrentUser'));
+        
+        if (!currentUser) {
+            // If no user is logged in, redirect to login page
+            window.location.href = 'index.html';
+        } else {
+            // Display user email
+            document.getElementById('userEmail').textContent = currentUser.email;
+        }
+        
+        function logout() {
+            // Clear authentication
+            sessionStorage.removeItem('fxMikoAuthenticated');
+            localStorage.removeItem('fxMikoCurrentUser');
+            
+            // Redirect to login page
+            window.location.href = 'index.html';
+        }
+    </script>
+</body>
+</html>
