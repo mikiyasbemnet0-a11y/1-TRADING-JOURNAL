@@ -3,9 +3,637 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FX TAE Trading Journal | Professional Trading Platform</title>
+    <title>FX MIKO Trading Journal | Professional Trading Platform</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="style.css">
+    <style>
+        /* Complete CSS for FX MIKO Trading Journal */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #0a0e17 0%, #121826 100%);
+            color: #e0e0e0;
+            min-height: 100vh;
+            padding: 20px;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 20% 50%, rgba(41, 196, 255, 0.05) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(103, 76, 159, 0.05) 0%, transparent 50%),
+                radial-gradient(circle at 40% 80%, rgba(255, 107, 107, 0.05) 0%, transparent 50%);
+            z-index: -1;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        /* Top Right Auth & Social */
+        .top-right-auth {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            z-index: 100;
+        }
+
+        .top-login-btn, .top-signup-btn {
+            padding: 10px 22px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: none;
+        }
+
+        .top-login-btn {
+            background: transparent;
+            color: #29c4ff;
+            border: 1px solid #29c4ff;
+        }
+
+        .top-signup-btn {
+            background: linear-gradient(90deg, #29c4ff, #674c9f);
+            color: white;
+        }
+
+        .top-login-btn:hover {
+            background: rgba(41, 196, 255, 0.1);
+            transform: translateY(-2px);
+        }
+
+        .top-signup-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(41, 196, 255, 0.3);
+        }
+
+        .social-icons-top {
+            display: flex;
+            gap: 15px;
+            margin-left: 10px;
+        }
+
+        .social-icons-top a {
+            color: #e0e0e0;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+            width: 36px;
+            height: 36px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .social-icons-top a:hover {
+            color: #29c4ff;
+            transform: translateY(-3px);
+            background: rgba(41, 196, 255, 0.1);
+        }
+
+        /* Header */
+        .main-header {
+            padding: 40px 0 30px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            margin-bottom: 40px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .logo-icon {
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, #29c4ff, #674c9f);
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            color: white;
+        }
+
+        .logo-text h1 {
+            font-size: 2.2rem;
+            background: linear-gradient(90deg, #29c4ff, #ff6b6b);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 5px;
+        }
+
+        .logo-text span {
+            font-size: 0.9rem;
+            color: #a0a0a0;
+            letter-spacing: 1.5px;
+        }
+
+        /* Hero Section */
+        .hero-section {
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            gap: 50px;
+            margin-bottom: 60px;
+        }
+
+        .hero-title {
+            font-size: 3.2rem;
+            background: linear-gradient(90deg, #29c4ff, #ff6b6b);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+
+        .hero-subtitle {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            color: #b0b0b0;
+            margin-bottom: 40px;
+        }
+
+        /* Features Grid */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+
+        .feature-item {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            padding: 20px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            transition: all 0.3s ease;
+            border: 1px solid transparent;
+        }
+
+        .feature-item:hover {
+            background: rgba(255, 255, 255, 0.08);
+            border-color: rgba(41, 196, 255, 0.3);
+            transform: translateY(-5px);
+        }
+
+        .feature-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, #29c4ff, #674c9f);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+            color: white;
+        }
+
+        .feature-text h4 {
+            font-size: 1.1rem;
+            margin-bottom: 5px;
+            color: #ffffff;
+        }
+
+        .feature-text p {
+            font-size: 0.9rem;
+            color: #a0a0a0;
+        }
+
+        /* FX MIKO Section */
+        .fx-miko-section {
+            background: linear-gradient(135deg, rgba(41, 196, 255, 0.1), rgba(103, 76, 159, 0.1));
+            border-radius: 15px;
+            padding: 25px;
+            border: 1px solid rgba(41, 196, 255, 0.2);
+            margin-top: 30px;
+        }
+
+        .fx-miko-section h3 {
+            color: #29c4ff;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.4rem;
+        }
+
+        .fx-miko-section p {
+            color: #b0b0b0;
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+
+        .fx-social-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .fx-social-links a {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 10px 20px;
+            border-radius: 25px;
+            color: #e0e0e0;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+        }
+
+        .fx-social-links a:hover {
+            background: rgba(41, 196, 255, 0.2);
+            color: #29c4ff;
+            transform: translateY(-2px);
+        }
+
+        /* Auth Section */
+        .auth-section {
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 20px;
+            padding: 30px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .auth-tabs {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 30px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            padding-bottom: 15px;
+        }
+
+        .auth-tab {
+            background: none;
+            border: none;
+            color: #a0a0a0;
+            padding: 10px 25px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .auth-tab.active {
+            background: linear-gradient(90deg, #29c4ff, #674c9f);
+            color: white;
+        }
+
+        .auth-tab:hover:not(.active) {
+            background: rgba(255, 255, 255, 0.05);
+            color: #e0e0e0;
+        }
+
+        /* Auth Forms */
+        .auth-form {
+            display: none;
+        }
+
+        .auth-form.active {
+            display: block;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: #b0b0b0;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 14px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            color: white;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: #29c4ff;
+            background: rgba(255, 255, 255, 0.08);
+        }
+
+        .password-input {
+            position: relative;
+        }
+
+        .toggle-password {
+            position: absolute;
+            right: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
+            color: #a0a0a0;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+
+        .password-hint {
+            display: block;
+            margin-top: 5px;
+            color: #888;
+            font-size: 0.85rem;
+        }
+
+        .auth-btn {
+            width: 100%;
+            padding: 16px;
+            background: linear-gradient(90deg, #29c4ff, #674c9f);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 10px;
+        }
+
+        .auth-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(41, 196, 255, 0.3);
+        }
+
+        .terms {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin: 20px 0;
+            font-size: 0.9rem;
+            color: #a0a0a0;
+        }
+
+        .terms input {
+            width: 16px;
+            height: 16px;
+        }
+
+        .divider {
+            text-align: center;
+            margin: 25px 0;
+            color: #888;
+            font-size: 0.9rem;
+            position: relative;
+        }
+
+        .divider::before, .divider::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            width: 40%;
+            height: 1px;
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .divider::before {
+            left: 0;
+        }
+
+        .divider::after {
+            right: 0;
+        }
+
+        .google-auth-btn {
+            width: 100%;
+            padding: 14px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            color: white;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .google-auth-btn:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: rgba(255, 255, 255, 0.2);
+        }
+
+        /* Contact Info Section */
+        .contact-info-side {
+            margin-top: 30px;
+            padding-top: 25px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .contact-info-side h4 {
+            color: #29c4ff;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.1rem;
+        }
+
+        .contact-details {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 12px;
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .contact-item:hover {
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .contact-item i {
+            font-size: 1.2rem;
+            color: #29c4ff;
+            width: 30px;
+        }
+
+        .contact-item div {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .contact-item span {
+            font-size: 0.8rem;
+            color: #888;
+        }
+
+        .contact-item strong {
+            font-size: 0.9rem;
+            color: #e0e0e0;
+        }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 30px 0;
+            color: #888;
+            font-size: 0.9rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .footer p:first-child {
+            margin-bottom: 5px;
+        }
+
+        /* Toast Notification */
+        .toast {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            padding: 15px 25px;
+            background: rgba(0, 0, 0, 0.9);
+            color: white;
+            border-radius: 8px;
+            border-left: 4px solid #29c4ff;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            display: none;
+            z-index: 1000;
+            max-width: 350px;
+        }
+
+        .toast.success {
+            border-left-color: #4CAF50;
+        }
+
+        .toast.error {
+            border-left-color: #f44336;
+        }
+
+        .toast.info {
+            border-left-color: #2196F3;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1200px) {
+            .hero-section {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+            
+            .hero-title {
+                font-size: 2.8rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .top-right-auth {
+                position: relative;
+                top: 0;
+                right: 0;
+                justify-content: center;
+                margin-bottom: 20px;
+            }
+            
+            .hero-title {
+                font-size: 2.3rem;
+            }
+            
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .logo {
+                flex-direction: column;
+                text-align: center;
+                gap: 10px;
+            }
+            
+            .logo-text h1 {
+                font-size: 1.8rem;
+            }
+            
+            .fx-social-links {
+                flex-direction: column;
+            }
+            
+            .fx-social-links a {
+                justify-content: center;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-title {
+                font-size: 1.8rem;
+            }
+            
+            .auth-tabs {
+                flex-direction: column;
+            }
+            
+            .auth-tab {
+                width: 100%;
+            }
+        }
+
+        /* Animation for feature items */
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .feature-item:hover .feature-icon {
+            animation: float 2s ease-in-out infinite;
+        }
+
+        /* Pulse animation for CTA buttons */
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(41, 196, 255, 0.7); }
+            70% { box-shadow: 0 0 0 10px rgba(41, 196, 255, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(41, 196, 255, 0); }
+        }
+
+        .top-signup-btn, .auth-btn {
+            animation: pulse 2s infinite;
+        }
+    </style>
 </head>
 <body class="landing-page">
     <!-- Main Container -->
@@ -15,10 +643,10 @@
             <button class="top-login-btn" id="topLoginBtn">Login</button>
             <button class="top-signup-btn" id="topSignupBtn">Sign Up</button>
             <div class="social-icons-top">
-                <a href="https://tiktok.com/@fx_tae_trader" target="_blank"><i class="fab fa-tiktok"></i></a>
-                <a href="https://instagram.com/fxtaetrader" target="_blank"><i class="fab fa-instagram"></i></a>
-                <a href="https://youtube.com/fxtaetrader" target="_blank"><i class="fab fa-youtube"></i></a>
-                <a href="https://t.me/fxtaetrader" target="_blank"><i class="fab fa-telegram"></i></a>
+                <a href="https://tiktok.com/@fx_miko_trader" target="_blank"><i class="fab fa-tiktok"></i></a>
+                <a href="https://instagram.com/fxmikotrader" target="_blank"><i class="fab fa-instagram"></i></a>
+                <a href="https://youtube.com/fxmikotrader" target="_blank"><i class="fab fa-youtube"></i></a>
+                <a href="https://t.me/fxmikotrader" target="_blank"><i class="fab fa-telegram"></i></a>
             </div>
         </div>
 
@@ -29,7 +657,7 @@
                     <i class="fas fa-chart-line"></i>
                 </div>
                 <div class="logo-text">
-                    <h1>FX TAE TRADING JOURNAL</h1>
+                    <h1>FX MIKO TRADING JOURNAL</h1>
                     <span>Join The 1% Trading Circle</span>
                 </div>
             </div>
@@ -40,7 +668,7 @@
             <div class="hero-content">
                 <h1 class="hero-title">Master Your Trading Journey</h1>
                 <p class="hero-subtitle">
-                    Welcome to FX TAE's professional trading journal platform. Track every trade, analyze your performance, 
+                    Welcome to FX MIKO's professional trading journal platform. Track every trade, analyze your performance, 
                     and join an exclusive community of disciplined traders. Whether you're just starting or are a seasoned 
                     professional, our tools will help you achieve consistent profitability.
                 </p>
@@ -79,31 +707,31 @@
                         </div>
                         <div class="feature-text">
                             <h4>Personal Coaching</h4>
-                            <p>Learn from FX TAE himself</p>
+                            <p>Learn from FX MIKO herself</p>
                         </div>
                     </div>
                 </div>
 
-                <!-- FX Tae Journaling Section -->
-                <div class="fx-tae-section">
-                    <h3><i class="fas fa-chart-line"></i> FX TAE TRADING JOURNAL</h3>
+                <!-- FX MIKO Journaling Section -->
+                <div class="fx-miko-section">
+                    <h3><i class="fas fa-chart-line"></i> FX MIKO TRADING JOURNAL</h3>
                     <p>Your ultimate trading companion for systematic journaling, performance analysis, and continuous improvement. Join thousands of traders who have transformed their results.</p>
                     
                     <div class="fx-social-links">
-                        <a href="https://tiktok.com/@fx_tae_trader" target="_blank">
-                            <i class="fab fa-tiktok"></i> @fx_tae_trader
+                        <a href="https://tiktok.com/@fx_miko_trader" target="_blank">
+                            <i class="fab fa-tiktok"></i> @fx_miko_trader
                         </a>
-                        <a href="https://instagram.com/fxtaetrader" target="_blank">
-                            <i class="fab fa-instagram"></i> @fxtaetrader
+                        <a href="https://instagram.com/fxmikotrader" target="_blank">
+                            <i class="fab fa-instagram"></i> @fxmikotrader
                         </a>
-                        <a href="https://youtube.com/fxtaetrader" target="_blank">
-                            <i class="fab fa-youtube"></i> FX Tae Trader
+                        <a href="https://youtube.com/fxmikotrader" target="_blank">
+                            <i class="fab fa-youtube"></i> FX MIKO Trader
                         </a>
-                        <a href="https://t.me/fxtaetrader" target="_blank">
+                        <a href="https://t.me/fxmikotrader" target="_blank">
                             <i class="fab fa-telegram"></i> Trading Group
                         </a>
-                        <a href="https://facebook.com/fxtaetrader" target="_blank">
-                            <i class="fab fa-facebook"></i> FX Tae Trader
+                        <a href="https://facebook.com/fxmikotrader" target="_blank">
+                            <i class="fab fa-facebook"></i> FX MIKO Trader
                         </a>
                     </div>
                 </div>
@@ -191,7 +819,7 @@
                             <i class="fas fa-envelope"></i>
                             <div>
                                 <span>Email</span>
-                                <strong>fxtae.chartprogram@gmail.com</strong>
+                                <strong>fxmiko.chartprogram@gmail.com</strong>
                             </div>
                         </div>
                         <div class="contact-item">
@@ -215,7 +843,7 @@
 
         <!-- Footer -->
         <footer class="footer">
-            <p>&copy; 2024 FX TAE Trading Journal. All rights reserved.</p>
+            <p>&copy; 2024 FX MIKO Trading Journal. All rights reserved.</p>
             <p>Professional Trading Platform for The 1% Trading Circle</p>
         </footer>
     </div>
@@ -223,11 +851,10 @@
     <!-- Toast Notification -->
     <div class="toast" id="toast"></div>
 
-    <script src="script.js"></script>
     <script>
         // Secure user storage
-        const USERS_KEY = 'fxTaeUsers';
-        const CURRENT_USER_KEY = 'fxTaeCurrentUser';
+        const USERS_KEY = 'fxMikoUsers';
+        const CURRENT_USER_KEY = 'fxMikoCurrentUser';
 
         // Initialize users storage
         function initializeUsers() {
@@ -269,12 +896,12 @@
                 createdAt: user.createdAt
             };
             localStorage.setItem(CURRENT_USER_KEY, JSON.stringify(safeUser));
-            sessionStorage.setItem('fxTaeAuthenticated', 'true');
+            sessionStorage.setItem('fxMikoAuthenticated', 'true');
         }
 
         // Check if user is authenticated
         function isAuthenticated() {
-            return sessionStorage.getItem('fxTaeAuthenticated') === 'true';
+            return sessionStorage.getItem('fxMikoAuthenticated') === 'true';
         }
 
         // Password validation
@@ -363,7 +990,7 @@
                 id: Date.now(),
                 name,
                 email,
-                password, // In production, hash this password
+                password,
                 createdAt: new Date().toISOString()
             };
             
@@ -425,7 +1052,7 @@
                         id: Date.now(),
                         name,
                         email,
-                        password: 'google_auth', // Placeholder for Google auth
+                        password: 'google_auth',
                         createdAt: new Date().toISOString(),
                         isGoogleUser: true
                     };
