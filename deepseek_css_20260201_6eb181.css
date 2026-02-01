@@ -1,0 +1,73 @@
+/* Update the CSS class from .fx-tae-section to .fx-miko-section */
+.fx-miko-section {
+    background: var(--bg-card);
+    padding: 2rem;
+    border-radius: 16px;
+    border: 2px solid var(--border-color);
+    margin-top: 2rem;
+    box-shadow: var(--shadow);
+}
+
+.fx-miko-section h3 {
+    font-size: 1.3rem;
+    margin-bottom: 1rem;
+    color: var(--primary);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.fx-miko-section p {
+    color: var(--text-secondary);
+    line-height: 1.7;
+    margin-bottom: 1.5rem;
+}
+
+.fx-social-links {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.fx-social-links a {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.75rem 1rem;
+    background: var(--bg-secondary);
+    border-radius: 8px;
+    color: var(--text-primary);
+    text-decoration: none;
+    transition: all 0.3s;
+    border: 1px solid var(--border-color);
+}
+
+.fx-social-links a:hover {
+    background: rgba(var(--primary-rgb), 0.1);
+    border-color: var(--primary);
+    transform: translateX(5px);
+}
+
+.fx-social-links i {
+    width: 20px;
+    text-align: center;
+    color: var(--primary);
+}
+
+/* Update logo text styling in dashboard */
+.logo h1 {
+    font-size: clamp(1rem, 3vw, 1.5rem);
+    font-weight: 800;
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* In the dashboard logo section, make sure the text shows "FX MIKO" */
+.logo h1::after {
+    content: "FX MIKO TRADING JOURNAL";
+}
